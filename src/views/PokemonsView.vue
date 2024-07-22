@@ -34,7 +34,6 @@ getData("http://pokeapi.co/api/v2/pokemon")
             <li v-for="poke in data.results" class="list-group-item">
                 <router-link :to="`/pokemons/${poke.name}`">{{poke.name}}</router-link>
             </li>
-            
         </ul>
         <div class="my-2">
             <button class="btn btn-success me-2" @click="getData(data.next)" :disabled="!data.previous">Prev</button>
