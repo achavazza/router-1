@@ -1,0 +1,1 @@
+import{h as s,c as n,b as e,F as a,o as c}from"./index-wgJW6upd.js";const r=e("h1",null,"404",-1),m={__name:"NotFoundView",setup(u){const t=s(),o=()=>{t.push("/pokemons")};return(l,_)=>(c(),n(a,null,[r,e("button",{onClick:o,class:"btn btn-primary"},"Back")],64))}};export{m as default};
