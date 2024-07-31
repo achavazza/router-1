@@ -1,9 +1,35 @@
 <template>
     <h1>Register</h1>
-    <button @click="userStore.registerUser('Ignacio')">Acceder</button>
+    <form @submit.prevent="handleSubmit">
+        <input v-model="email" type="email" name="email" placeholder="ingrese email" id="register-email">
+        <input v-model="password" type="password" name="password" placeholder="ingrese password" id="register-password">
+        <input :disabled="userStore.loadingUser" type="submit" value="Creat usuario">
+    </form>
 </template>
 
 <script setup>
-import { useUserStore } from "../stores/user";
-const userStore = useUserStore();
+import { ref } from 'vue'
+import { useUserStore } from "../stores/user"
+//import { useRouter } from "vue-router"
+
+const email = ref('')
+const password = ref('')
+
+//const router = useRouter()
+
+const userStore = useUserStore()
+
+const handleSubmit = async () => {
+    if(!email.value || password.value.length < 6){
+        alert('ingrese user y pass');
+    }
+    
+    await userStore.registerUser(email.value, password.value)
+    //router.push('/')
+
+    console.log(email.value)
+    console.log(password.value)
+    console.log('procesando formulario')
+
+}
 </script>
