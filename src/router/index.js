@@ -9,15 +9,16 @@ import Register from "@/views/Register.vue";
 //middleware con una promesa para esperar y chequear el login de usuario
 const requireAuth = async (to, from, next) =>{
   const userStore = useUserStore();  
+  userStore.loadingSession = true;
   const user = await userStore.currentUser();
   if(user){
     next();
     console.log('entro');
-    }else{
-      //next('/login');
+  }else{
+    //next('/login');
     console.log('no entro');
-    }
-
+  }
+  userStore.loadingSession = false;
 }
 
 const router = createRouter({

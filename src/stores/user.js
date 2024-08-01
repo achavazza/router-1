@@ -13,6 +13,7 @@ export const useUserStore = defineStore("userStore",{
     state:()=>({
         userData: null,
         loadingUser: false,
+        loadingSession: false,
     }),
     getters:{
         minuscula(state) {
