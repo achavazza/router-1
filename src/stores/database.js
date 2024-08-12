@@ -98,7 +98,7 @@ export const useDatabaseStore = defineStore('database',{
                 })
 
                 //map devuelve el total de elementos del array, si o si, por positva o negativa, no cambia el tamaño del array
-                this.documents = this.documents.map(item => item.id === id ? ({...items, name:name}) : item )
+                this.documents = this.documents.map(item => item.id === id ? ({...item, name:name}) : item )
                 
                 router.push('/')
                 //return docSnap.data().name
