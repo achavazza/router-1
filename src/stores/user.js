@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 
 import router from '@/router/index.js';
+import { useDatabaseStore } from "./database";
 
 export const useUserStore = defineStore("userStore",{
     state:()=>({
