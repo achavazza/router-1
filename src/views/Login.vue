@@ -1,10 +1,15 @@
 <template>
-    <h1>Login</h1>
-    <form @submit.prevent="handleSubmit">
-        <input v-model="email" type="email" name="email" placeholder="ingrese email" id="register-email">
-        <input v-model="password" type="password" name="password" placeholder="ingrese password" id="register-password">
-        <input type="submit" value="Ingresar">
-    </form>
+    <a-row>
+        <a-col span="12" offset="6" :sm="{span:24, offset:0}">
+            <a-form @submit.prevent="handleSubmit" name="basicLogin" autocomplete="off" layout="horizontal">
+                <a-form-item name="email" label="Ingresa tu correo" :rules="[{required:true, message: 'Ingresa un email'}]">
+                    <a-input v-model:value="email"></a-input>
+                </a-form-item>
+                <input v-model="password" type="password" name="password" placeholder="ingrese password" id="register-password">
+                <input type="submit" value="Ingresar">
+            </a-form>
+        </a-col>
+    </a-row>
 </template>
 
 <script setup>

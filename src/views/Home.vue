@@ -18,8 +18,8 @@
                 <br/>
                 {{ item.id }}
                 <br/>
-                <button @click="databaseStore.deleteURL(item.id)">Eliminar</button>
-                <button @click="router.push(`/editar/${item.id}`)">Editar</button>
+                <a-button type="primary" @click="databaseStore.deleteURL(item.id)">Eliminar</a-button>
+                <a-button type="default" @click="router.push(`/editar/${item.id}`)">Editar</a-button>
             </li>
         </ul>
     </div>
