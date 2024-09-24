@@ -19,6 +19,7 @@
   </a-layout>
 </template>
 
+
 <script setup>
 import { ref, watch } from 'vue';
 import { useUserStore } from './stores/user';
@@ -32,4 +33,18 @@ watch(
   //que quiero hacer
   () => {selectedKeys.value = [route.name]}
 )
+
+
 </script>
+
+<style>
+/*
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 2s;
+}
+
+@view-transition {
+  navigation: auto;
+}*/
+</style>
