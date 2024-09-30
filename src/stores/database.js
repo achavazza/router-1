@@ -34,12 +34,13 @@ export const useDatabaseStore = defineStore('database',{
                 })
                 
             } catch (error) {
-                console.log(error);
+                console.log(error.code);
             } finally {
                 this.loadingDoc = false;
             }
         },
         async addUrl(name) {
+            this.loadingDoc = true;
             try {
                 const auth = getAuth();
                 const objetoDoc = {
@@ -55,8 +56,8 @@ export const useDatabaseStore = defineStore('database',{
                 });
             } catch (error) {
                 
-                }finally{
-                    
+            }finally{
+                this.loadingDoc = false;   
             }
         },
         async leerURL(id){
@@ -110,6 +111,7 @@ export const useDatabaseStore = defineStore('database',{
             }
         },
         async deleteURL(id){
+            this.loadingDoc = true;
             try {
                 const auth = getAuth();
                 const docRef = doc(db, 'urls', id);
@@ -125,9 +127,10 @@ export const useDatabaseStore = defineStore('database',{
                 await deleteDoc(docRef);
                 this.documents = this.documents.filter(item => item.id !== id);
             } catch (error) {
-                console.log(error);
+                //console.log(error.code);
+                return error.message;
             }finally{
-
+                this.loadingDoc = false;
             }
         }
     }

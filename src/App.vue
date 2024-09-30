@@ -9,7 +9,7 @@
       </a-menu>
     </a-layout-header>
     <a-layout-content style="padding:0 50px;">
-      <div :style="{ background: '#fff', padding: '24px', minHeight: '280px' }">
+      <div :style="{ background: '#fff', padding: '24px', minHeight: '280px' }"  class="full-h">
         <div v-if="userStore.loadingSession">
           Loading...
         </div>
@@ -47,4 +47,11 @@ watch(
 @view-transition {
   navigation: auto;
 }*/
+body{
+    margin: 0 !important;
+}
+
+.full-h{
+    min-height: calc(100vh - 64px) !important;
+}
 </style>

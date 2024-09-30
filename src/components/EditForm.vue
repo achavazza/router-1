@@ -30,16 +30,11 @@ const onFinish = async (value)=>{
     layout="vertical"
     :model="formState"
     @finish="onFinish"
-    >   
-        <!--<a-form-item
-            name="url"
-            label="Ingresa una url"
-            :rules="[{required:true, whitespace:true,pattern:/^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/, message: 'Ingresa una url válida'}]"
-        >-->
+    >
         <a-form-item
             name="url"
             label="Ingresa una url"
-            :rules="[{required:true, whitespace:true,pattern:/https?:\/\/(?:w{1,3}\.)?[^\s.]+(?:\.[a-z]+)*(?::\d+)?(?![^<]*(?:<\/\w+>|\/?>))/, message: 'Ingresa una url válida'}]"
+            :rules="[{required:true, whitespace:true,pattern:/^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$/, message: 'Ingresa una url válida'}]"
         >
             <a-input v-model:value="formState.url"></a-input>
         </a-form-item>
@@ -50,7 +45,7 @@ const onFinish = async (value)=>{
                 :loading="databaseStore.loadingDoc"
                 :disabled="databaseStore.loadingDoc"
             >
-                Agregar URL
+                Editar URL
             </a-button>
         </a-form-item>
     </a-form>
