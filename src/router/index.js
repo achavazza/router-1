@@ -5,6 +5,7 @@ import Home from "@/views/Home.vue";
 import Login from "@/views/Login.vue";
 import Editar from "@/views/Editar.vue";
 import Register from "@/views/Register.vue";
+import Perfil from "@/views/Perfil.vue";
 
 
 //middleware con una promesa para esperar y chequear el login de usuario
@@ -29,6 +30,7 @@ const router = createRouter({
     { path: "/editar/:id", component: Editar, beforeEnter: requireAuth, name: 'edit' },
     { path: "/login", component: Login, name: 'login' },
     { path: "/register", component: Register, name: 'register' },
+    { path: "/perfil", component: Perfil, beforeEnter: requireAuth, name: 'perfil' },
   ]
 })
 

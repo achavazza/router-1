@@ -2,9 +2,10 @@
   <a-layout>
     <a-layout-header v-if="!userStore.loadingSession">
       <a-menu theme="dark" mode="horizontal" :style="{lineHeight: '64px'}" v-model:selectedKeys="selectedKeys">
-        <a-menu-item key="home"     v-if="userStore.userData"><router-link to="/">Home</router-link></a-menu-item>
-        <a-menu-item key="login"    v-if="!userStore.userData"><router-link to="/login">Login</router-link></a-menu-item>
-        <a-menu-item key="register" v-if="!userStore.userData"><router-link to="/register">Register</router-link></a-menu-item>
+        <a-menu-item key="home"       v-if="userStore.userData"><router-link to="/">Home</router-link></a-menu-item>
+        <a-menu-item key="perfil"     v-if="userStore.userData"><router-link to="/perfil">Perfil</router-link></a-menu-item>
+        <a-menu-item key="login"      v-if="!userStore.userData"><router-link to="/login">Login</router-link></a-menu-item>
+        <a-menu-item key="register"   v-if="!userStore.userData"><router-link to="/register">Register</router-link></a-menu-item>
         <a-menu-item key="logout"     @click="userStore.logoutUser" v-if="userStore.userData">Logout</a-menu-item>
       </a-menu>
     </a-layout-header>
@@ -43,10 +44,8 @@ watch(
 ::view-transition-new(root) {
   animation-duration: 2s;
 }
+*/
 
-@view-transition {
-  navigation: auto;
-}*/
 body{
     margin: 0 !important;
 }
