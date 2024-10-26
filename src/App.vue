@@ -14,7 +14,7 @@
         <div v-if="userStore.loadingSession">
           Loading...
         </div>
-        <router-view></router-view>
+        <router-view v-else></router-view>
       </div>
     </a-layout-content>
   </a-layout>

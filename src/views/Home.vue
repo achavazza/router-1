@@ -1,7 +1,6 @@
 <template>
     <div>
-        <h1>Home</h1>
-        {{ userStore.userData }}
+        <h1>Inicio</h1>
 
         <AddForm />
         <!--
@@ -36,6 +35,7 @@
                             >Eliminar</a-button>
                         </a-popconfirm>
                         <a-button type="default" @click="router.push(`/editar/${item.id}`)">Editar</a-button>
+                        <a-button @click="copiarPortapapeles(item.id)">Copiar</a-button>
                     </a-space>
                 </template>
                 <p>{{ item.id }}</p>        
@@ -79,6 +79,25 @@ const confirm = async (id) => {
 }
 const cancel = () => {
     message.info('No se eliminó')
+}
+
+const copiarPortapapeles = async (id) => {
+    console.log(id);
+    if(!navigator.clipboard){
+        message.error('No se pudo copiar al portapapeles')
+        return
+    }
+    
+    const path = `${window.location.origin}/${id}`
+    const err = await navigator.clipboard.writeText(path)
+    if(err){    
+        message.error(`Ocurrió un error ${err}`)
+    }else{
+        message.success('Se copió al portapapeles')
+    }
+
+    
+
 }
 
 </script>

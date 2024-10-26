@@ -14,12 +14,21 @@ service cloud.firestore {
     // your rules
     //match /{document=**} {
     match /urls/{id} {
-      allow read, update, delete:
-      if request.auth != null && request.auth.uid == resource.data.user;
-      //if request.time < timestamp.date(2024, 10, 31);
+      allow read: if true;
+      allow update, delete:
+      	if request.auth != null && request.auth.uid == resource.data.user;
+      	//if request.time < timestamp.date(2024, 10, 31);
       
       allow create:
-      if request.auth != null;
+        if request.auth != null;
+    }
+    match /users/{id} {
+      allow read, update, delete:
+      	if request.auth != null && request.auth.uid == id;
+      	//if request.time < timestamp.date(2024, 10, 31);
+      
+      allow create:
+      	if request.auth != null;
     }
   }
 }

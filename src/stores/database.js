@@ -1,5 +1,5 @@
 import { getAuth } from "firebase/auth";
-import { collection, where, addDoc, doc, getDoc, getDocs, query, deleteDoc, updateDoc } from "firebase/firestore/lite";
+import { collection, where, addDoc, setDoc, doc, getDoc, getDocs, query, deleteDoc, updateDoc } from "firebase/firestore/lite";
 import { db } from "@/firebaseConfig"
 import { defineStore } from "pinia";
 
@@ -48,16 +48,41 @@ export const useDatabaseStore = defineStore('database',{
                     short: nanoid(6),
                     user: auth.currentUser.uid,
                 };
+                /*
                 //el id se lo agrega firebase con addDoc
                 const docRef = await addDoc(collection(db, "urls"), objetoDoc);
                 this.documents.push({
                     ...objetoDoc,
                     id: docRef.id
                 });
+                */
+                // cambio la logica a asignar un id propio usando nano
+                await setDoc(doc(db, "urls", objetoDoc.short), objetoDoc);
+                this.documents.push({
+                    ...objetoDoc,
+                    id: objetoDoc.short
+                });
             } catch (error) {
                 
             }finally{
                 this.loadingDoc = false;   
+            }
+        },
+        async getURL(id) {
+            try {
+                const docRef = doc(db, 'urls', id);
+                const docSnap = await getDoc(docRef);
+
+                if (!docSnap.exists()) {
+                   return false
+                }
+                
+                return docSnap.data().name
+                
+            } catch (error) {
+                return false
+            } finally {
+
             }
         },
         async leerURL(id){

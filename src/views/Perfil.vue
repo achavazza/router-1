@@ -1,8 +1,7 @@
 <template lang="">
-    {{userStore.userData}}
     <h1>Perfil de usuario</h1>
     <div class="text-center mb-2">
-        <a-avatar :src="userStore.userData.photoURL" :size="150"></a-avatar>
+        <a-avatar v-if="userStore.userData.photoURL" :src="userStore.userData.photoURL" :size="150"></a-avatar>
     </div>
     <a-row>
         
@@ -80,15 +79,7 @@ const handleChange = (info) => {
         }
         //console.log(file, fileList);
     }
-    /* 
-    let resFileList = [...info.fileList]
-    resFileList = resFileList.slice(-1);
-    resFileList = resFileList.map(file =>{
-        if(file.response){
-            file.url=file.response.url
-        }
-    })
-    */
+  
 }
 const handleRemove = (file) => {
   const index = fileList.value.indexOf(file);
@@ -99,22 +90,10 @@ const handleRemove = (file) => {
 
 
 const onFinish = async() => {
-    //console.log(fileList.value[0]);
-    /*
-    si es mas de 1 imagen
-    fileList.value.forEach(file =>{
-        console.log(file)
-        })*/
-
-    if(fileList.value[0]){
-        const error = await userStore.updateImg(fileList.value[0]);
-        if(error){
-            return message.error('No se subio la imagen')
-        }
-        return message.success('Se actualizó tu imagen')
-    }    
-       
-    const error = await userStore.updateUser(userStore.userData.displayName);
+    const error = await userStore.updateUser(
+        userStore.userData.displayName, //displayName
+        fileList.value[0] //imagen
+    );
 
     if(!error){
         return message.success('Se actualizó tu información')
