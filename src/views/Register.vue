@@ -89,7 +89,7 @@ const handleSubmit = async () => {
 }
 const onFinish = async(values) => {
     console.log('Success:', values)
-    const error = await userStore.loginUser(formState.email, formState.password)
+    const error = await userStore.registerUser(formState.email, formState.password)
     
     if(!error){
         return message.success("Verifica tu correo electrónico");
